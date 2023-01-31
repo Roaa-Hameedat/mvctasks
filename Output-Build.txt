@@ -1,5 +1,0 @@
-﻿Build started...
-1>------ Build started: Project: task1(31-1), Configuration: Debug Any CPU ------
-1>  task1(31-1) -> C:\Users\dell\source\repos\task1(31-1)\task1(31-1)\bin\task1(31-1).dll
-========== Build: 1 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========
-========== Elapsed 00:00.204 ==========
