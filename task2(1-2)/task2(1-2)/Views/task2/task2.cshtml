@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "task2";
+}
+
+<h2>task2</h2>
+<table class="table  table-hover">
+    <tr>
+        <th>CategoryID</th>
+        <th>ProductID</th>
+        <th>ProductName</th>
+        
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.CategoryID</td>
+
+            <td>@item.ProductID</td>
+            <td>@item.ProductName</td>
+             
+        </tr>
+    }
+
+</table>
+
