@@ -1,0 +1,109 @@
+﻿@model IEnumerable<task3_5_2_.Models.task3>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<div class="form-group">
+    <div class="input-group">
+        @using (Html.BeginForm("Index", "Task_CRUD", FormMethod.Get))
+        {
+            <input type="text" class="form-control" placeholder="Search by name or job title" name="searchString" value="@ViewBag.CurrentFilter" />
+            <div class="input-group-append">
+                <button class="btn btn-secondary" type="submit">
+                    Search
+                </button>
+
+            </div>
+            <div class="form-group">
+                <div class="form-check form-check-inline">
+                    @Html.RadioButton("searchBy", "First Name", false, new { @class = "form-check-input" })
+                    <label class="form-check-label" for="firstNameRadio">First Name</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    @Html.RadioButton("searchBy", "Last Name", false, new { @class = "form-check-input" })
+                    <label class="form-check-label" for="lastNameRadio">Last Name</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    @Html.RadioButton("searchBy", "Email", false, new { @class = "form-check-input" })
+                    <label class="form-check-label" for="emailRadio">Email</label>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.First_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Last_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Phon)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Age)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Jop_Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Gender)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Image)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CV)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.First_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Last_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Phon)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Age)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Jop_Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Gender)
+        </td>
+        <td>
+            <img src="../img/@item.Image" style="width:100px;" />
+        </td>
+        <td>
+            <a href="Download?CV=@item.CV">@item.CV</a>
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

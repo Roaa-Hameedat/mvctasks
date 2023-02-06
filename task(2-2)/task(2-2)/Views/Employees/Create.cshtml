@@ -1,0 +1,96 @@
+﻿@model task_2_2_.Models.Employee
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm())
+{
+   
+    <div class="form-horizontal">
+        <h4>Employee</h4>
+        <hr />
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="ID">ID</label>
+            <div class="col-md-10">
+                <input class="form-control text-box single-line" data-val="true" data-val-number="The field ID must be a number." data-val-required="The ID field is required." id="ID" name="ID" type="number" value="" />
+                <span class="field-validation-valid text-danger" data-valmsg-for="ID" data-valmsg-replace="true"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="First_Name">First_Name</label>
+            <div class="col-md-10">
+                <input class="form-control text-box single-line" data-val="true" data-val-length="The field First_Name must be a string with a maximum length of 12." data-val-length-max="12" data-val-required="The First_Name field is required." id="First_Name" name="First_Name" type="text" value="" />
+                <span class="field-validation-valid text-danger" data-valmsg-for="First_Name" data-valmsg-replace="true"></span>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="Last_Name">Last_Name</label>
+            <div class="col-md-10">
+                <input class="form-control text-box single-line" data-val="true" data-val-length="The field Last_Name must be a string with a maximum length of 12." data-val-length-max="12" data-val-required="The Last_Name field is required." id="Last_Name" name="Last_Name" type="text" value="" />
+                <span class="field-validation-valid text-danger" data-valmsg-for="Last_Name" data-valmsg-replace="true"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="E_mail">E_mail</label>
+            <div class="col-md-10">
+                <input class="form-control text-box single-line" data-val="true" data-val-required="invalid" id="E_mail" name="E_mail" type="text" value="" />
+                <span class="field-validation-valid text-danger" data-valmsg-for="E_mail" data-valmsg-replace="true"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="Phone_Number">Phone_Number</label>
+            <div class="col-md-10">
+                <input class="form-control text-box single-line" data-val="true" data-val-regex="The field Phone_Number must match the regular expression &#39;^[0][789]{1} [0-9]{7}$&#39;." data-val-regex-pattern="^[0][789]{1} [0-9]{7}$" data-val-required="its not Jordan number " id="Phone_Number" name="Phone_Number" type="text" value="" />
+                <span class="field-validation-valid text-danger" data-valmsg-for="Phone_Number" data-valmsg-replace="true"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="Age">Age</label>
+            <div class="col-md-10">
+                <input class="form-control text-box single-line" data-val="true" data-val-number="The field Age must be a number." data-val-range="The field Age must be between 18 and 50." data-val-range-max="50" data-val-range-min="18" data-val-required="The Age field is required." id="Age" name="Age" type="number" value="" />
+                <span class="field-validation-valid text-danger" data-valmsg-for="Age" data-valmsg-replace="true"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="Jop_Title">Jop_Title</label>
+            <div class="col-md-10">
+                <input class="form-control text-box single-line" data-val="true" data-val-length="The field Jop_Title must be a string with a maximum length of 12." data-val-length-max="12" data-val-required="max length 10 character" id="Jop_Title" name="Jop_Title" type="text" value="" />
+                <span class="field-validation-valid text-danger" data-valmsg-for="Jop_Title" data-valmsg-replace="true"></span>
+            </div>
+        </div>
+
+
+        <!--</div>-->
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    <a href="/Employees">Back to List</a>
+</div>
+
+<script src="/Scripts/jquery-3.4.1.js"></script>
+
+<script src="/Scripts/bootstrap.js"></script>
+
+
+<script src="/Scripts/jquery.validate.js"></script>
+<script src="/Scripts/jquery.validate.unobtrusive.js"></script>
+
