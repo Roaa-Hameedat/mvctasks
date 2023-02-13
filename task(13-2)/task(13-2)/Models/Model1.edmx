@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ApitaskModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Factories">
+          <Key>
+            <PropertyRef Name="FactoryID" />
+          </Key>
+          <Property Name="FactoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FactoryName" Type="varchar" MaxLength="50" />
+          <Property Name="Discription" Type="varchar" MaxLength="500" />
+          <Property Name="Img" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Majours">
+          <Key>
+            <PropertyRef Name="MajourID" />
+          </Key>
+          <Property Name="MajourID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MajourName" Type="varchar" MaxLength="50" />
+          <Property Name="FactoryID" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Majours_Factories">
+          <End Role="Factories" Type="Self.Factories" Multiplicity="1" />
+          <End Role="Majours" Type="Self.Majours" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Factories">
+              <PropertyRef Name="FactoryID" />
+            </Principal>
+            <Dependent Role="Majours">
+              <PropertyRef Name="FactoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ApitaskModelStoreContainer">
+          <EntitySet Name="Factories" EntityType="Self.Factories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Majours" EntityType="Self.Majours" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Majours_Factories" Association="Self.FK_Majours_Factories">
+            <End Role="Factories" EntitySet="Factories" />
+            <End Role="Majours" EntitySet="Majours" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ApitaskModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Factory">
+          <Key>
+            <PropertyRef Name="FactoryID" />
+          </Key>
+          <Property Name="FactoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FactoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Discription" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Img" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Majours" Relationship="Self.FK_Majours_Factories" FromRole="Factories" ToRole="Majours" />
+        </EntityType>
+        <EntityType Name="Majour">
+          <Key>
+            <PropertyRef Name="MajourID" />
+          </Key>
+          <Property Name="MajourID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MajourName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FactoryID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Factory" Relationship="Self.FK_Majours_Factories" FromRole="Majours" ToRole="Factories" />
+        </EntityType>
+        <Association Name="FK_Majours_Factories">
+          <End Role="Factories" Type="Self.Factory" Multiplicity="1" />
+          <End Role="Majours" Type="Self.Majour" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Factories">
+              <PropertyRef Name="FactoryID" />
+            </Principal>
+            <Dependent Role="Majours">
+              <PropertyRef Name="FactoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ApitaskEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Factories" EntityType="Self.Factory" />
+          <EntitySet Name="Majours" EntityType="Self.Majour" />
+          <AssociationSet Name="FK_Majours_Factories" Association="Self.FK_Majours_Factories">
+            <End Role="Factories" EntitySet="Factories" />
+            <End Role="Majours" EntitySet="Majours" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ApitaskModelStoreContainer" CdmEntityContainer="ApitaskEntities">
+          <EntitySetMapping Name="Factories">
+            <EntityTypeMapping TypeName="ApitaskModel.Factory">
+              <MappingFragment StoreEntitySet="Factories">
+                <ScalarProperty Name="FactoryID" ColumnName="FactoryID" />
+                <ScalarProperty Name="FactoryName" ColumnName="FactoryName" />
+                <ScalarProperty Name="Discription" ColumnName="Discription" />
+                <ScalarProperty Name="Img" ColumnName="Img" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Majours">
+            <EntityTypeMapping TypeName="ApitaskModel.Majour">
+              <MappingFragment StoreEntitySet="Majours">
+                <ScalarProperty Name="MajourID" ColumnName="MajourID" />
+                <ScalarProperty Name="MajourName" ColumnName="MajourName" />
+                <ScalarProperty Name="FactoryID" ColumnName="FactoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

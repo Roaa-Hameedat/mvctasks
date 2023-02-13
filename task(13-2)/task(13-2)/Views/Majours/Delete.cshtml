@@ -1,0 +1,40 @@
+﻿@model task_13_2_.Models.Majour
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Majour</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MajourName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MajourName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Factory.FactoryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Factory.FactoryName)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

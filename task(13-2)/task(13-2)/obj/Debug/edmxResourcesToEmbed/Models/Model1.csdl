@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ApitaskModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Factory">
+    <Key>
+      <PropertyRef Name="FactoryID" />
+    </Key>
+    <Property Name="FactoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FactoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Discription" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Img" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Majours" Relationship="Self.FK_Majours_Factories" FromRole="Factories" ToRole="Majours" />
+  </EntityType>
+  <EntityType Name="Majour">
+    <Key>
+      <PropertyRef Name="MajourID" />
+    </Key>
+    <Property Name="MajourID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MajourName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FactoryID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Factory" Relationship="Self.FK_Majours_Factories" FromRole="Majours" ToRole="Factories" />
+  </EntityType>
+  <Association Name="FK_Majours_Factories">
+    <End Role="Factories" Type="Self.Factory" Multiplicity="1" />
+    <End Role="Majours" Type="Self.Majour" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Factories">
+        <PropertyRef Name="FactoryID" />
+      </Principal>
+      <Dependent Role="Majours">
+        <PropertyRef Name="FactoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ApitaskEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Factories" EntityType="Self.Factory" />
+    <EntitySet Name="Majours" EntityType="Self.Majour" />
+    <AssociationSet Name="FK_Majours_Factories" Association="Self.FK_Majours_Factories">
+      <End Role="Factories" EntitySet="Factories" />
+      <End Role="Majours" EntitySet="Majours" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ApitaskModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Factories">
+    <Key>
+      <PropertyRef Name="FactoryID" />
+    </Key>
+    <Property Name="FactoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FactoryName" Type="varchar" MaxLength="50" />
+    <Property Name="Discription" Type="varchar" MaxLength="500" />
+    <Property Name="Img" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="Majours">
+    <Key>
+      <PropertyRef Name="MajourID" />
+    </Key>
+    <Property Name="MajourID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MajourName" Type="varchar" MaxLength="50" />
+    <Property Name="FactoryID" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Majours_Factories">
+    <End Role="Factories" Type="Self.Factories" Multiplicity="1" />
+    <End Role="Majours" Type="Self.Majours" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Factories">
+        <PropertyRef Name="FactoryID" />
+      </Principal>
+      <Dependent Role="Majours">
+        <PropertyRef Name="FactoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ApitaskModelStoreContainer">
+    <EntitySet Name="Factories" EntityType="Self.Factories" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Majours" EntityType="Self.Majours" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Majours_Factories" Association="Self.FK_Majours_Factories">
+      <End Role="Factories" EntitySet="Factories" />
+      <End Role="Majours" EntitySet="Majours" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

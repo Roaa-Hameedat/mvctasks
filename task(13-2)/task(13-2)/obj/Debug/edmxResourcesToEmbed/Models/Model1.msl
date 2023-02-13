@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ApitaskModelStoreContainer" CdmEntityContainer="ApitaskEntities">
+    <EntitySetMapping Name="Factories">
+      <EntityTypeMapping TypeName="ApitaskModel.Factory">
+        <MappingFragment StoreEntitySet="Factories">
+          <ScalarProperty Name="FactoryID" ColumnName="FactoryID" />
+          <ScalarProperty Name="FactoryName" ColumnName="FactoryName" />
+          <ScalarProperty Name="Discription" ColumnName="Discription" />
+          <ScalarProperty Name="Img" ColumnName="Img" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Majours">
+      <EntityTypeMapping TypeName="ApitaskModel.Majour">
+        <MappingFragment StoreEntitySet="Majours">
+          <ScalarProperty Name="MajourID" ColumnName="MajourID" />
+          <ScalarProperty Name="MajourName" ColumnName="MajourName" />
+          <ScalarProperty Name="FactoryID" ColumnName="FactoryID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
